@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+function direccionar(num)
+{
+$('form[name=form' + num + ']').submit();
+}
+    </script>
+
+    <title>Tiempo al Tiempo</title>
+
+  </head>
+
+{# Load the tag library #}
+{% load bootstrap3 %}
+{% load app_filters %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Tiempo al Tiempo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+    {% if form.errors %}
+        <p class="navbar-text navbar-left">Número de socio o password erroneo.</p>
+    {% endif %}
+    {% if user.is_authenticated %}
+    {% block menu %}
+    {% endblock %}
+	<a type="button" class="btn btn-default navbar-btn navbar-right btn-danger" href="/logout">Salir</a>
+    {% else %}
+          <form method="post" action="{% url 'django.contrib.auth.views.login' %}" class="navbar-form navbar-right">
+        {% csrf_token %}
+            <div class="form-group">
+		{{ form.username|addph:"NumSocio" }}
+            </div>
+            <div class="form-group">
+		{{ form.password |addph:"Password" }}
+            </div>
+        <input class="btn btn-success" type="submit" value="login"/> <input type="hidden" name="next"
+                                                    value="{{ next }}"/>
+          </form>
+    {% endif %}
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+      <div class="container">
+        <div class="jumbotron">
+	  {% block content %}{% endblock %}
+        </div>
+	  {% block abajo %}{% endblock %}
+      </div>
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block menu %}
+          <ul class="nav navbar-nav">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="{% url 'cuentas' %}">Cuentas</a></li>
+            <li class="active"><a href="{% url 'busqueda' %}">Búsqueda</a></li>
+            <li><a href="{% url 'editar' %}">Editar Datos</a></li>
+            <li><a href="{% url 'novedades' %}">Novedades</a></li>
+            <li><a href="{% url 'contacto' %}">Contacto</a></li>
+          </ul>
+{% endblock %}
+{% block content %}
+<h1 class="sub-header">Resultados</h1>
+<div class="list-group">
+{% if articulo.count == 0 %}
+<p>No hay resultados para tu busqueda</p>
+{% else %}
+{% for i in  articulo.all %}
+{% if i.user.is_active %}
+{% ifchanged i.categoria or i.subcategoria %}
+  <a class="list-group-item active">{{ i.get_categoria_display | upper }} > {{ i.subcategoria }}</a>
+{% endifchanged %}
+    <form action='{% url 'resultado_palabra' %}' name="form{{ forloop.counter }}" method="post">
+      {% csrf_token %} 
+      <input type="hidden" name="palab" value="{{ i.nombre }}">
+    </form>
+  <a class="list-group-item" onclick="direccionar({{ forloop.counter }})">{{ i.nombre |quitarcom }}</a>
+{% endif %}
+{% endfor %}
+{% endif %}
+</div>
+
+{% endblock %}

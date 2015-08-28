@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block menu %}
+          <ul class="nav navbar-nav">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="{% url 'cuentas' %}">Cuentas</a></li>
+            <li class="active"><a href="{% url 'busqueda' %}">Búsqueda</a></li>
+            <li><a href="{% url 'editar' %}">Editar Datos</a></li>
+            <li><a href="{% url 'novedades' %}">Novedades</a></li>
+            <li><a href="{% url 'contacto' %}">Contacto</a></li>
+          </ul>
+{% endblock %}
+{% block content %}
+<h1 class="sub-header">Resultados</h1>
+<div class="list-group">
+  <p class="list-group-item active">{{ cat }} > {{ subcat }}</p>
+{% for i in  articulo.all %}
+{% if i.user.is_active %}
+  <div>
+    <form action='' name="form{{ forloop.counter }}" method="post">
+      {% csrf_token %} 
+      <input type="hidden" name="nombre" value="{{ i.nombre }}">
+    </form>
+  </div>
+  <a class="list-group-item" onclick="direccionar({{ forloop.counter }})">{{ i.nombre |quitarcom }}</a>
+{% endif %}
+{% endfor %}
+</div>
+
+{% endblock %}

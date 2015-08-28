@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block menu %}
+          <ul class="nav navbar-nav">
+            <li><a href="/">Inicio</a></li>
+            <li class="active"><a href="#">Cuentas</a></li>
+            <li><a href="{% url 'busqueda' %}">Búsqueda</a></li>
+            <li><a href="{% url 'editar' %}">Editar Datos</a></li>
+            <li><a href="{% url 'novedades' %}">Novedades</a></li>
+            <li><a href="{% url 'contacto' %}">Contacto</a></li>
+          </ul>
+{% endblock %}
+{% block content %}
+<h1>Cuentas de {{ user.first_name }}</h1>
+<h2 class="sub-header">Compras</h2>
+<div class="table-responsive">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Horas</th>
+        <th>Vendedor</th>
+        <th>Artículo</th>
+      </tr>
+    </thead>
+{% for i in  user.comprador.all %}
+    <tbody>
+      <tr>
+        <td>{{ i.fecha }}</td>
+        <td>{{ i.horas }}</td>
+        <td>{{ i.vendedor.first_name }}</td>
+        <td>{{ i.articulo.nombre }}</td>
+      </tr>
+    </tbody>
+{% endfor %}
+      <tr>
+        <td></td>
+        <td><h4><span class="label label-danger">{{ user.comprador.all | sumahoras }}</h4></span></td>
+        <td></td>
+      </tr>
+  </table>
+</div>
+
+<h2 class="sub-header">Ventas</h2>
+<div class="table-responsive">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Horas</th>
+        <th>Comprador</th>
+        <th>Artículo</th>
+      </tr>
+    </thead>
+{% for i in  user.vendedor.all %}
+    <tbody>
+      <tr>
+        <td>{{ i.fecha }}</td>
+        <td>{{ i.horas }}</td>
+        <td>{{ i.comprador.first_name }}</td>
+        <td>{{ i.articulo.nombre }}</td>
+      </tr>
+    </tbody>
+{% endfor %}
+      <tr>
+        <td></td>
+        <td><h4><span class="label label-success">{{ user.vendedor.all | sumahoras }}</span></h4></td>
+        <td></td>
+      </tr>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block menu %}
+          <ul class="nav navbar-nav">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="{% url 'cuentas' %}">Cuentas</a></li>
+            <li class="active"><a href="{% url 'busqueda' %}/tiempo/web/busqueda">Búsqueda</a></li>
+            <li><a href="{% url 'editar' %}#">Editar Datos</a></li>
+            <li><a href="{% url 'novedades' %}/tiempo/web/novedades">Novedades</a></li>
+            <li><a href="{% url 'contacto' %}">Contacto</a></li>
+          </ul>
+{% endblock %}
+{% block content %}
+<h1 class="sub-header">{{ nombre | quitarcom }}</h1>
+<div class="table-responsive">
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th><h2>Socio</h2></th>
+        <th><h2>Teléfono</h2></th>
+        <th><h2>e-mail<h2></th>
+        <th><h2>Pueblo<h2></th>
+        <th><h2>Descripción<h2></th>
+      </tr>
+    </thead>
+{% for i in  articulo.all %}
+{% if i.user.is_active %}
+    <tbody>
+      <tr>
+        <td>{{ i.user.first_name }} {{ i.user.last_name }}</td>
+{% if i.user.socio.mostrar_telefono %}
+        <td>{{ i.user.socio.telefono }}</td>
+{% else %}
+        <td>No proporcionado</td>
+{% endif %}
+{% if i.user.socio.mostrar_email %}
+        <td>{{ i.user.email }}</td>
+{% else %}
+        <td>No proporcionado</td>
+{% endif %}
+        <td>{{ i.user.socio.pueblo }}</td>
+        <td>{{ i.descripcion }}</td>
+      </tr>
+    </tbody>
+{% endif %}
+{% endfor %}
+  </table>
+</div>
+
+
+{% endblock %}
