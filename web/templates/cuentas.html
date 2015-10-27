@@ -1,15 +1,5 @@
 {% extends "base.html" %}
 {% load app_filters %}
-{% block menu %}
-          <ul class="nav navbar-nav">
-            <li><a href="/">Inicio</a></li>
-            <li class="active"><a href="#">Cuentas</a></li>
-            <li><a href="{% url 'busqueda' %}">Búsqueda</a></li>
-            <li><a href="{% url 'editar' %}">Editar Datos</a></li>
-            <li><a href="{% url 'novedades' %}">Novedades</a></li>
-            <li><a href="{% url 'contacto' %}">Contacto</a></li>
-          </ul>
-{% endblock %}
 {% block content %}
 <h1>Cuentas de {{ user.first_name }}</h1>
 <h2 class="sub-header">Compras</h2>

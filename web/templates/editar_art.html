@@ -1,16 +1,6 @@
 {% extends "base.html" %}
 {% load app_filters %}
 {% load bootstrap3 %}
-{% block menu %}
-          <ul class="nav navbar-nav">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="{% url 'cuentas' %}">Cuentas</a></li>
-            <li><a href="{% url 'busqueda' %}">Búsqueda</a></li>
-            <li class="active"><a href="#">Editar Datos</a></li>
-            <li><a href="{% url 'novedades' %}">Novedades</a></li>
-            <li><a href="{% url 'contacto' %}">Contacto</a></li>
-          </ul>
-{% endblock %}
 {% block content %}
   <h2>Editar Artículo {{ nombre | quitarcom }}</h2>
     <form action="" method="post" class="form">

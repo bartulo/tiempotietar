@@ -1,0 +1,44 @@
+{% load app_filters %}
+{% load base_extras %}
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Tiempo al Tiempo</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+    {% if form.errors %}
+        <p class="navbar-text navbar-left">Número de socio o password erroneo.</p>
+    {% endif %}
+    {% if user.is_authenticated %}
+          <ul class="nav navbar-nav">
+            <li><a href="/">Inicio</a></li>
+            <li class="{% navactive request 'cuentas' %}"><a href="{% url 'cuentas' %}">Cuentas</a></li>
+            <li class="{% navactive request 'busqueda' %}"><a href="{% url 'busqueda' %}">Búsqueda</a></li>
+            <li class="{% navactive request 'editar' %}"><a href="{% url 'editar' %}#">Editar Datos</a></li>
+            <li class="{% navactive request 'novedades' %}"><a href="{% url 'novedades' %}">Novedades</a></li>
+            <li class="{% navactive request 'contacto' %}"><a href="{% url 'contacto' %}">Contacto</a></li>
+          </ul>
+	<a type="button" class="btn btn-default navbar-btn navbar-right btn-danger" href="/logout">Salir</a>
+    {% else %}
+          <form method="post" action="{% url 'django.contrib.auth.views.login' %}" class="navbar-form navbar-right">
+        {% csrf_token %}
+            <div class="form-group">
+		{{ form.username|addph:"NumSocio" }}
+            </div>
+            <div class="form-group">
+		{{ form.password |addph:"Password" }}
+            </div>
+        <input class="btn btn-success" type="submit" value="login"/> <input type="hidden" name="next"
+                                                    value="{{ next }}"/>
+          </form>
+    {% endif %}
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
