@@ -21,7 +21,7 @@
             <li><a href="/">Inicio</a></li>
             <li class="{% navactive request 'cuentas' %}"><a href="{% url 'cuentas' %}">Cuentas</a></li>
             <li class="{% navactive request 'busqueda busqueda_palabra resultado_palabra' %}"><a href="{% url 'busqueda' %}">Búsqueda</a></li>
-            <li class="{% navactive request 'editar editar_serv borrar_articulo nuevo_articulo' %}"><a href="{% url 'editar' %}#">Editar Datos</a></li>
+            <li class="{% navactive request 'editar nuevo_articulo' %}"><a href="{% url 'editar' %}#">Editar Datos</a></li>
             <li class="{% navactive request 'novedades' %}"><a href="{% url 'novedades' %}">Novedades</a></li>
             <li class="{% navactive request 'contacto' %}"><a href="{% url 'contacto' %}">Contacto</a></li>
           </ul>
