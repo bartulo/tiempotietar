@@ -28,8 +28,12 @@ def contacto(request):
   return render(request, 'contacto.html')
 
 def novedades(request):
-  art = Articulo.objects.order_by('-fecha')[:10]
-  return render(request, 'novedades.html', {'arts':art} )
+  art = Articulo.objects.filter(tipo = 'oferta').order_by('-fecha')[:10]
+  return render(request, 'novedades.html', {'arts':art, 'tipo':'Ofertas'} )
+
+def novedades_demandas(request):
+  art = Articulo.objects.filter(tipo = 'demanda').order_by('-fecha')[:10]
+  return render(request, 'novedades.html', {'arts':art, 'tipo':'Demandas'} )
 
 @login_required
 def borrarArticulo(request, pk):
