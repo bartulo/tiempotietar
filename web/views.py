@@ -99,10 +99,19 @@ def cuentas(request):
 def busqueda(request):
   def filtro(cat):
     res = []
-    for i in Articulo.objects.filter(categoria = cat).distinct('subcategoria'):
+    for i in Articulo.objects.filter(tipo = 'oferta', categoria = cat).distinct('subcategoria'):
       res.append(i.subcategoria)
     return res
   return render(request, 'busqueda.html', {'bienes_comp':filtro('bienes_comp'),'bienes_alq':filtro('bienes_alq'),'clases':filtro('clases'),'servicios':filtro('servicios')})
+
+def busqueda_demandas(request):
+  def filtro(cat):
+    res = []
+    for i in Articulo.objects.filter(tipo = 'demanda', categoria = cat).distinct('subcategoria'):
+      res.append(i.subcategoria)
+    return res
+  return render(request, 'busqueda_demandas.html', {'bienes_comp':filtro('bienes_comp'),'bienes_alq':filtro('bienes_alq'),'clases':filtro('clases'),'servicios':filtro('servicios')})
+
 
 def resultado(request, cat, subcat):
   if request.method == 'POST':
