@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': 'tiempo',
         'USER': 'servidor',
         'PASSWORD': 'ventanuco',
-        'HOST': '', 
+        'HOST': 'localhost', 
     }
 }
 
