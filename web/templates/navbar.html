@@ -32,8 +32,12 @@
             <li class="{% navactive request 'editar nuevo_articulo' %}">
               <a href="{% url 'editar' %}#">Editar Datos</a>
             </li>
-            <li class="{% navactive request 'novedades' %}">
-              <a href="{% url 'novedades' %}">Novedades</a>
+            <li class="{% navactive request 'novedades novedades_demandas' %} dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'novedades' %}">Novedades</a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'novedades' %}">Ofertas</a></li>
+                <li><a href="{% url 'novedades_demandas' %}">Demandas</a></li>
+              </ul>
             </li>
             <li class="{% navactive request 'contacto' %}">
               <a href="{% url 'contacto' %}">Contacto</a>

@@ -68,10 +68,10 @@ WSGI_APPLICATION = 'tiempo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tiempo',
-        'USER': 'servidor',
+        'NAME': 'tiempo2',
+        'USER': 'nano',
         'PASSWORD': 'ventanuco',
-        'HOST': 'localhost', 
+        'HOST': '', 
     }
 }
 
