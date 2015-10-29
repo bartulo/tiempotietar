@@ -1,0 +1,14 @@
+# step 1
+make sure you're on master branch, if not, git checkout master
+
+# step 2
+$ git pull
+
+# step 3
+$ git checkout deploy
+
+# step 4
+$ git rebase master
+
+# step 5
+$ git push origin deploy
