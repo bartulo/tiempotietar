@@ -112,7 +112,6 @@ def busqueda_demandas(request):
     return res
   return render(request, 'busqueda_demandas.html', {'bienes_comp':filtro('bienes_comp'),'bienes_alq':filtro('bienes_alq'),'clases':filtro('clases'),'servicios':filtro('servicios')})
 
-
 def resultado(request, cat, subcat):
   if request.method == 'POST':
     articulo = request.POST.get("nombre")
@@ -120,7 +119,17 @@ def resultado(request, cat, subcat):
     return render(request, 'articulo.html', {'nombre': articulo, 'articulo': art})
   else:
     subc = SubCategoriaArticulo.objects.get(pk = subcat)
-    art = Articulo.objects.filter(categoria = cat).filter(subcategoria = subc).filter(activo = True).distinct('nombre')
+    art = Articulo.objects.filter(tipo = 'oferta').filter(categoria = cat).filter(subcategoria = subc).filter(activo = True).distinct('nombre')
+    return render(request, 'resultado.html', {'cat': art[0].get_categoria_display().upper(), 'subcat': subc.nombre, 'articulo': art})
+
+def resultado_demandas(request, cat, subcat):
+  if request.method == 'POST':
+    articulo = request.POST.get("nombre")
+    art = Articulo.objects.filter(nombre = articulo)
+    return render(request, 'articulo.html', {'nombre': articulo, 'articulo': art})
+  else:
+    subc = SubCategoriaArticulo.objects.get(pk = subcat)
+    art = Articulo.objects.filter(tipo = 'demanda').filter(categoria = cat).filter(subcategoria = subc).filter(activo = True).distinct('nombre')
     return render(request, 'resultado.html', {'cat': art[0].get_categoria_display().upper(), 'subcat': subc.nombre, 'articulo': art})
 
 def reset_confirm(request, uidb64=None, token=None):

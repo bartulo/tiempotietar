@@ -10,7 +10,7 @@
   </button>
   <ul class="dropdown-menu" role="menu">
       {% for i in bienes_comp %}
-    <li><a href="{% url 'resultado' 'bienes_comp' i.pk %}">{{ i.nombre }}</a></li>
+    <li><a href="{% url 'resultado_demandas' 'bienes_comp' i.pk %}">{{ i.nombre }}</a></li>
       {% endfor %}
   </ul>
 </div>
@@ -20,7 +20,7 @@
   </button>
   <ul class="dropdown-menu" role="menu">
       {% for i in bienes_alq %}
-    <li><a href="{% url 'resultado' 'bienes_alq' i.pk %}">{{ i.nombre }}</a></li>
+    <li><a href="{% url 'resultado_demandas' 'bienes_alq' i.pk %}">{{ i.nombre }}</a></li>
       {% endfor %}
   </ul>
 </div>
@@ -30,7 +30,7 @@
   </button>
   <ul class="dropdown-menu" role="menu">
       {% for i in clases %}
-    <li><a href="{% url 'resultado' 'clases' i.pk %}">{{ i.nombre }}</a></li>
+    <li><a href="{% url 'resultado_demandas' 'clases' i.pk %}">{{ i.nombre }}</a></li>
       {% endfor %}
   </ul>
 </div>
@@ -40,7 +40,7 @@
   </button>
   <ul class="dropdown-menu" role="menu">
       {% for i in servicios %}
-    <li><a href="{% url 'resultado' 'servicios' i.pk %}">{{ i.nombre }}</a></li>
+    <li><a href="{% url 'resultado_demandas' 'servicios' i.pk %}">{{ i.nombre }}</a></li>
       {% endfor %}
   </ul>
 </div>
