@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^nuevoArticulo/', views.nuevoArticulo, name='nuevo_articulo'),
     url(r'^borrarArticulo/(?P<pk>\d+)', views.borrarArticulo, name='borrar_articulo'),
     url(r'^resultado/(?P<cat>\w+)/(?P<subcat>\d+)', views.resultado, name='resultado'),
+    url(r'^resultadoDemandas/(?P<cat>\w+)/(?P<subcat>\d+)', views.resultado_demandas, name='resultado_demandas'),
     url(r'^sms/$', views.sms),
     url(r'^registro/$', views.registroSmsCreateView.as_view(), name='registro_sms'),
 )
