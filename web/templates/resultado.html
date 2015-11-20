@@ -10,6 +10,8 @@
     <form action='' name="form{{ forloop.counter }}" method="post">
       {% csrf_token %} 
       <input type="hidden" name="nombre" value="{{ i.nombre }}">
+      <input type="hidden" name="categoria" value="{{ i.categoria }}">
+      <input type="hidden" name="subcategoria" value="{{ i.subcategoria }}">
     </form>
   </div>
   <a class="list-group-item" onclick="direccionar({{ forloop.counter }})">{{ i.nombre |quitarcom }}</a>
