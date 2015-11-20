@@ -114,9 +114,7 @@ def resultado(request, cat, subcat):
   if request.method == 'POST':
     articulo = request.POST.get("nombre")
     categoria = request.POST.get("categoria")
-    subcategoria = request.POST.get("subcategoria")
-    subc = SubCategoriaArticulo.objects.get(nombre = subcategoria)
-    art = Articulo.objects.filter(nombre = articulo, categoria = categoria, subcategoria = subc)
+    art = Articulo.objects.filter(nombre = articulo, categoria = categoria)
     return render(request, 'articulo.html', {'nombre': articulo, 'articulo': art})
   else:
     subc = SubCategoriaArticulo.objects.get(pk = subcat)
@@ -127,9 +125,7 @@ def resultado_demandas(request, cat, subcat):
   if request.method == 'POST':
     articulo = request.POST.get("nombre")
     categoria = request.POST.get("categoria")
-    subcategoria = request.POST.get("subcategoria")
-    subc = SubCategoriaArticulo.objects.get(nombre = subcategoria)
-    art = Articulo.objects.filter(nombre = articulo, categoria = categoria, subcategoria = subc)
+    art = Articulo.objects.filter(nombre = articulo, categoria = categoria)
     return render(request, 'articulo.html', {'nombre': articulo, 'articulo': art})
   else:
     subc = SubCategoriaArticulo.objects.get(pk = subcat)
