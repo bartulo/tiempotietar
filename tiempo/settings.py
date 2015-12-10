@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import socket
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -21,9 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'situ%w*6su$7x#-b*uqnwz3)%6ac(icj6o4@6g14q&ezgd69ej'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-TEMPLATE_DEBUG = True
+if socket.gethostname() == 'netbook':
+  DEBUG = True
+  TEMPLATE_DEBUG = True
+
+else:
+  DEBUG = TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -65,11 +70,22 @@ WSGI_APPLICATION = 'tiempo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+if socket.gethostname() == 'netbook':
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'tiempo2',
         'USER': 'nano',
+        'PASSWORD': 'ventanuco',
+        'HOST': '', 
+    }
+}
+else:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tiempo',
+        'USER': 'servidor',
         'PASSWORD': 'ventanuco',
         'HOST': '', 
     }
