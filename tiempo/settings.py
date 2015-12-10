@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'tiempo.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 if socket.gethostname() == 'netbook':
-DATABASES = {
+  DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'tiempo2',
@@ -81,7 +81,7 @@ DATABASES = {
     }
 }
 else:
-DATABASES = {
+  DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'tiempo',
