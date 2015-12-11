@@ -30,7 +30,7 @@ if socket.gethostname() == 'netbook':
 else:
   DEBUG = TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,7 +87,7 @@ else:
         'NAME': 'tiempo',
         'USER': 'servidor',
         'PASSWORD': 'ventanuco',
-        'HOST': '', 
+        'HOST': 'localhost', 
     }
 }
 
@@ -109,6 +109,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'tiempodadata')
+MEDIA_URL = '/media/'
 
 # Redirect when login is correct.
 LOGIN_REDIRECT_URL = "/"
