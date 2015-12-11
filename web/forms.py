@@ -36,7 +36,7 @@ class SocioEditForm(forms.ModelForm):
 
     class Meta:
         model = Socio
-        fields = ('pueblo', 'telefono', 'mostrar_telefono', 'mostrar_email')
+        fields = ('avatar', 'pueblo', 'telefono', 'mostrar_telefono', 'mostrar_email')
 
 class ArticuloForm(forms.ModelForm):
 

@@ -5,6 +5,7 @@ from smart_selects.db_fields import ChainedForeignKey
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
+from django.conf import settings
 
   
 # SOCIO extensión de USER
@@ -14,7 +15,7 @@ class Socio(models.Model):
   numsocio = models.IntegerField(blank=True)
   pueblo = models.CharField(max_length=200, blank=True)
   telefono = models.CharField(max_length=30, blank=True)
-  avatar = models.ImageField(upload_to='/home/servidor/tiempodata/', blank=True)
+  avatar = models.ImageField(upload_to='prueba', blank=True)
   mostrar_telefono = models.BooleanField(default=True)
   mostrar_email = models.BooleanField(default=True)
   

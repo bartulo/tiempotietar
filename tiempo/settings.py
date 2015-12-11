@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import socket
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -109,7 +110,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'tiempodadata')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'tiempodata')
 MEDIA_URL = '/media/'
 
 # Redirect when login is correct.

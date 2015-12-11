@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.views import login, logout
+from django.conf import settings
 import autocomplete_light
 # import every app/autocomplete_light_registry.py
 autocomplete_light.autodiscover()
@@ -21,3 +22,8 @@ urlpatterns = patterns('',
     url(r'^reset/$', 'web.views.reset', name='reset'),
     url(r'^autocomplete/', include('autocomplete_light.urls')),
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('', 
+        (r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root': settings.MEDIA_ROOT,}),
+        )
