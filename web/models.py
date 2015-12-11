@@ -15,7 +15,7 @@ class Socio(models.Model):
   numsocio = models.IntegerField(blank=True)
   pueblo = models.CharField(max_length=200, blank=True)
   telefono = models.CharField(max_length=30, blank=True)
-  avatar = models.ImageField(upload_to='prueba', blank=True)
+  avatar = models.ImageField(upload_to='avatares', blank=True)
   mostrar_telefono = models.BooleanField(default=True)
   mostrar_email = models.BooleanField(default=True)
   
