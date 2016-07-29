@@ -94,7 +94,7 @@ class Cuenta(models.Model):
 def mandar_mensaje(sender, instance, **kwargs):
   texto = u'''Hola, 
 
-Os informamos que a fecha %s ha quedado registrado un intercambio entre %s(%s) y %s(%s) por valor de %s horas a favor de %s. Puedes comprobar el movimiento en la página de TaT http://tiempoaltiempo.tk
+Os informamos que a fecha %s ha quedado registrado un intercambio entre %s(%s) y %s(%s) por valor de %s horas a favor de %s. Puedes comprobar el movimiento en la página de TaT http://tiempoaltiempo.org
 
 Saludos y gracias por mantener vivo Banco del Tiempo Valle del Tiétar''' % (instance.fecha.strftime('%d/%m'), instance.comprador.first_name, instance.comprador.username, instance.vendedor.first_name, instance.vendedor.username, instance.horas, instance.vendedor.first_name)
 
