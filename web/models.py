@@ -19,6 +19,9 @@ class Socio(models.Model):
   mostrar_telefono = models.BooleanField(default=True)
   mostrar_email = models.BooleanField(default=True)
   
+  class Meta:
+    ordering = ['numsocio',]
+
   def __unicode__(self):
     return int(self.numsocio)
 

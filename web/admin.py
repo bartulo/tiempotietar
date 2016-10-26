@@ -6,6 +6,38 @@ from django.contrib.admin.helpers import ActionForm
 from django.http import HttpResponse
 from django import forms
 from web.models import *
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.admin import SimpleListFilter
+
+#### Clase para ordenar el filtro vendedor de la página de cuentas 
+
+class VendedorFilter(SimpleListFilter):
+  title = _('Por Vendedor')
+
+  parameter_name = 'vendedor'
+
+  def lookups(self, request, model_admin):
+    qs = model_admin.get_queryset(request)
+    return [(i, i) for i in qs.values_list('vendedor', flat=True).distinct().order_by('vendedor')]
+
+  def queryset(self, request, queryset):
+    if self.value():
+      return queryset.filter(vendedor__exact=self.value())
+
+#### Clase para ordenar el filtro comprador de la página de cuentas 
+
+class CompradorFilter(SimpleListFilter):
+  title = _('Por Comprador')
+
+  parameter_name = 'comprador'
+
+  def lookups(self, request, model_admin):
+    qs = model_admin.get_queryset(request)
+    return [(i, i) for i in qs.values_list('comprador', flat=True).distinct().order_by('comprador')]
+
+  def queryset(self, request, queryset):
+    if self.value():
+      return queryset.filter(comprador=self.value())
 
 def exportar_csv_cuentas(modeladmin, request, queryset):
     import csv
@@ -30,10 +62,14 @@ def exportar_csv_cuentas(modeladmin, request, queryset):
     return response
 exportar_csv_cuentas.short_description = u"Exportar CSV"
 
+#### Página de Cuentas en Admin 
+
 class CuentaAdmin(admin.ModelAdmin):
-  list_display = ('horas', 'vendedor', 'comprador', 'fecha', 'corregido')
-  list_filter = ['fecha', 'corregido', 'vendedor', 'comprador'] 
+  list_display = ('horas', 'vendedor', 'comprador', 'fecha',)
+  list_filter = ['fecha', VendedorFilter, CompradorFilter] 
   actions = [exportar_csv_cuentas]
+
+#### 
 
 class UpdateActionForm(ActionForm):
   subcategoria = forms.CharField(required=False)
