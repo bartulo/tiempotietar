@@ -12,13 +12,13 @@ from django.contrib.admin import SimpleListFilter
 #### Clase para ordenar el filtro vendedor de la página de cuentas 
 
 class VendedorFilter(SimpleListFilter):
-  title = _('Por Vendedor')
+  title = _('Vendedor')
 
   parameter_name = 'vendedor'
 
   def lookups(self, request, model_admin):
     qs = model_admin.get_queryset(request)
-    return [(i, i) for i in qs.values_list('vendedor', flat=True).distinct().order_by('vendedor')]
+    return [(i, User.objects.get(pk=i)) for i in qs.values_list('vendedor', flat=True).distinct().order_by('vendedor')]
 
   def queryset(self, request, queryset):
     if self.value():
@@ -27,13 +27,13 @@ class VendedorFilter(SimpleListFilter):
 #### Clase para ordenar el filtro comprador de la página de cuentas 
 
 class CompradorFilter(SimpleListFilter):
-  title = _('Por Comprador')
+  title = _('Comprador')
 
   parameter_name = 'comprador'
 
   def lookups(self, request, model_admin):
     qs = model_admin.get_queryset(request)
-    return [(i, i) for i in qs.values_list('comprador', flat=True).distinct().order_by('comprador')]
+    return [(i, User.objects.get(pk=i)) for i in qs.values_list('comprador', flat=True).distinct().order_by('comprador')]
 
   def queryset(self, request, queryset):
     if self.value():

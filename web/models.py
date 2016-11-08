@@ -23,7 +23,7 @@ class Socio(models.Model):
     ordering = ['numsocio',]
 
   def __unicode__(self):
-    return int(self.numsocio)
+    return self.numsocio
 
 # MANDAR CORREO de BIENVENIDA
 
