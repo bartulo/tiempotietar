@@ -52,6 +52,7 @@
     <div class="input-group">
       {% csrf_token %} 
       <input type="text" name="palabra" class="form-control" placeholder="Buscar artículos que contengan..."></input>
+      <input type="hidden" name="tipo" value="demanda"></input>
       <span class="input-group-btn">
         <button type="submit" class="btn btn-default">Buscar</button>
       </span>

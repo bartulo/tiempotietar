@@ -15,13 +15,13 @@ from django.views.generic.edit import CreateView
 def busqueda_palabra(request):
   if request.method == 'POST':
     palabra = request.POST['palabra']
-    art = Articulo.objects.filter(nombre__icontains = palabra).distinct('nombre')
-    return render(request, 'resultado_palabra.html', {'nombre': 'Resultados', 'articulo': art})
+    art = Articulo.objects.filter(nombre__icontains = palabra).filter(tipo = request.POST['tipo']).distinct('nombre')
+    return render(request, 'resultado_palabra.html', {'nombre': 'Resultados', 'articulo': art, 'post': request.POST})
 
 def resultado_palabra(request):
   if request.method == 'POST':
     palabra = request.POST['palab']
-    art = Articulo.objects.filter(nombre__icontains = palabra)
+    art = Articulo.objects.filter(nombre__icontains = palabra).filter(tipo = request.POST['tipo'])
     return render(request, 'articulo_palabra.html', {'nombre': palabra, 'articulo': art})
 
 def contacto(request):
@@ -44,7 +44,7 @@ def borrarArticulo(request, pk):
 @login_required
 def nuevoArticulo(request):
   if request.method == 'POST':
-    form = ArticuloForm(request.POST)
+    form = ArticuloForm(request.POST, request.FILES)
     if form.is_valid():
       art = form.save(commit=False)
       art.user = request.user

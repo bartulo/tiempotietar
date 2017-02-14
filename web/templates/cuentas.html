@@ -11,6 +11,7 @@
         <th>Horas</th>
         <th>Vendedor</th>
         <th>Artículo</th>
+        <th>Imagen</th>
       </tr>
     </thead>
 {% for i in  user.comprador.all %}
@@ -20,6 +21,11 @@
         <td>{{ i.horas }}</td>
         <td>{{ i.vendedor.first_name }}</td>
         <td>{{ i.articulo.nombre }}</td>
+	{% if i.imagen %}
+        <td><a href="{{ i.imagen.url }}" target="_blank">Registro de Intercambio</a></td>
+	{% else %}
+        <td>No hay imagen</td>
+	{% endif %}
       </tr>
     </tbody>
 {% endfor %}
@@ -40,6 +46,7 @@
         <th>Horas</th>
         <th>Comprador</th>
         <th>Artículo</th>
+        <th>Imagen</th>
       </tr>
     </thead>
 {% for i in  user.vendedor.all %}
@@ -49,6 +56,11 @@
         <td>{{ i.horas }}</td>
         <td>{{ i.comprador.first_name }}</td>
         <td>{{ i.articulo.nombre }}</td>
+	{% if i.imagen %}
+        <td><a href="{{ i.imagen.url }}" target="_blank">Registro de Intercambio</a></td>
+	{% else %}
+        <td>No hay imagen</td>
+	{% endif %}
       </tr>
     </tbody>
 {% endfor %}

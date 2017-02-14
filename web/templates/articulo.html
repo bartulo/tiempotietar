@@ -11,6 +11,7 @@
         <th><h2>e-mail<h2></th>
         <th><h2>Pueblo<h2></th>
         <th><h2>Descripción<h2></th>
+	<th><h2>Imagen del Artículo</h2></th>
       </tr>
     </thead>
 {% for i in  articulo.all %}
@@ -29,7 +30,12 @@
         <td>No proporcionado</td>
 {% endif %}
         <td>{{ i.user.socio.pueblo }}</td>
-        <td>{{ i.descripcion }}</td>
+        <td>{{ i.descripcion }}</td>i
+{% if i.imagen %}
+        <td><a href="" target="_blank">Registro de Intercambio</a></td>
+{% else %}
+        <td>No hay imagen</td>
+{% endif %}
       </tr>
     </tbody>
 {% endif %}

@@ -67,6 +67,7 @@ class Articulo(models.Model):
   descripcion = models.CharField(max_length=300, blank=True)
   activo = models.BooleanField(default=True)
   fecha = models.DateField(auto_now_add=True)
+  imagen = models.ImageField(upload_to='articulos/', blank=True, default="")
   def __unicode__(self):
     return self.nombre
 
@@ -85,6 +86,7 @@ class Cuenta(models.Model):
   horas = models.FloatField()
   articulo = ChainedForeignKey(Articulo, chained_field="vendedor", chained_model_field="user", auto_choose=True, blank=True)
   fecha = models.DateField()
+  imagen = models.ImageField(upload_to='cuentas/', blank=True, default="")
   corregido = models.CharField(max_length=10)
   class Meta:
     ordering = ['-fecha']

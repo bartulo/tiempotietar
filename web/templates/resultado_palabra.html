@@ -14,6 +14,7 @@
     <form action='{% url 'resultado_palabra' %}' name="form{{ forloop.counter }}" method="post">
       {% csrf_token %} 
       <input type="hidden" name="palab" value="{{ i.nombre }}">
+      <input type="hidden" name="tipo" value="{{ i.tipo }}">
     </form>
   <a class="list-group-item" onclick="direccionar({{ forloop.counter }})">{{ i.nombre |quitarcom }}</a>
 {% endif %}
