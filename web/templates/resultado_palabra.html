@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load app_filters %}
 {% block content %}
-<h1 class="sub-header">Resultados</h1>
+<h1 class="sub-header">Resultados de {{tipo}}s</h1>
 <div class="list-group">
 {% if articulo.count == 0 %}
 <p>No hay resultados para tu busqueda</p>

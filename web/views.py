@@ -15,8 +15,9 @@ from django.views.generic.edit import CreateView
 def busqueda_palabra(request):
   if request.method == 'POST':
     palabra = request.POST['palabra']
+    tipo = request.POST['tipo']
     art = Articulo.objects.filter(nombre__icontains = palabra).filter(tipo = request.POST['tipo']).distinct('nombre')
-    return render(request, 'resultado_palabra.html', {'nombre': 'Resultados', 'articulo': art, 'post': request.POST})
+    return render(request, 'resultado_palabra.html', {'nombre': 'Resultados', 'articulo': art, 'post': request.POST, 'tipo': tipo})
 
 def resultado_palabra(request):
   if request.method == 'POST':
@@ -83,7 +84,7 @@ def editar_serv(request, num):
    if request.method == 'POST':
         # formulario enviado
      art = Articulo.objects.get(pk=num)
-     art_form = ArticuloForm(request.POST, instance = art)
+     art_form = ArticuloForm(request.POST, request.FILES, instance = art)
 
      if art_form.is_valid():
             # formulario validado correctamente

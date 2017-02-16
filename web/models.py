@@ -6,6 +6,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 from django.conf import settings
+from web.utils import get_upload_path
 
   
 # SOCIO extensión de USER
@@ -86,7 +87,7 @@ class Cuenta(models.Model):
   horas = models.FloatField()
   articulo = ChainedForeignKey(Articulo, chained_field="vendedor", chained_model_field="user", auto_choose=True, blank=True)
   fecha = models.DateField()
-  imagen = models.ImageField(upload_to='cuentas/', blank=True, default="")
+  imagen = models.ImageField(upload_to=get_upload_path, blank=True, default="")
   corregido = models.CharField(max_length=10)
   class Meta:
     ordering = ['-fecha']
