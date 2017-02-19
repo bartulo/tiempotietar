@@ -7,6 +7,7 @@ from django.template.loader import get_template
 from django.template import Context
 from django.conf import settings
 from web.utils import get_upload_path
+from web.utils import get_upload_path_articulo
 
   
 # SOCIO extensión de USER
@@ -68,7 +69,7 @@ class Articulo(models.Model):
   descripcion = models.CharField(max_length=300, blank=True)
   activo = models.BooleanField(default=True)
   fecha = models.DateField(auto_now_add=True)
-  imagen = models.ImageField(upload_to='articulos/', blank=True, default="")
+  imagen = models.ImageField(upload_to=get_upload_path_articulo, blank=True, default="")
   def __unicode__(self):
     return self.nombre
 

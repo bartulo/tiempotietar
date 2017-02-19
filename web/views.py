@@ -74,8 +74,10 @@ def edit(request):
    else:
      edit_form = UserEditForm(instance=request.user)
      socio_form = SocioEditForm(instance=request.user.socio)
+     ofertas = request.user.articulo_set.all().filter(tipo='oferta')
+     demandas = request.user.articulo_set.all().filter(tipo='demanda')
      return render(request, 'editar.html',
-                             {'form':edit_form, 'form_socio':socio_form})
+                             {'form':edit_form, 'form_socio':socio_form, 'ofertas':ofertas, 'demandas':demandas})
 
 @login_required
 def editar_serv(request, num):
