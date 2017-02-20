@@ -26,10 +26,10 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-</div>
-<div class="list-group">
 {% if demandas %}
-<h3 class="sub-header">Editar Demandas</h3>
+<div class="row">
+<div class="col-md-12">
+<h3 class="sub-header espacio-arriba">Editar Demandas</h3>
 {% for i in  demandas %}
 {% if i.activo %}
   <a class="list-group-item list-group-item-info col-md-10 col-sm-9 col-xs-8" href="/web/editar/{{ i.pk }}" title="Editar Demanda">{{ i.nombre |quitarcom }}</a>
@@ -37,7 +37,8 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-
+</div>
+</div>
 </div>
 <div class="row">
 <div class="col-md-12">
