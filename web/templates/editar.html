@@ -28,17 +28,17 @@
 {% endif %}
 {% if demandas %}
 <div class="row">
-<div class="col-md-12">
-<h3 class="sub-header espacio-arriba">Editar Demandas</h3>
-{% for i in  demandas %}
-{% if i.activo %}
-  <a class="list-group-item list-group-item-info col-md-10 col-sm-9 col-xs-8" href="/web/editar/{{ i.pk }}" title="Editar Demanda">{{ i.nombre |quitarcom }}</a>
-  <a id="borrar" class="list-group-item list-group-item-danger col-md-2 col-sm-3 col-xs-4" href="{% url 'borrar_articulo' i.pk %}">{% bootstrap_icon "remove" %} Eliminar</a>
-{% endif %}
-{% endfor %}
-{% endif %}
+	<div class="col-md-12">
+		<h3 class="sub-header espacio-arriba">Editar Demandas</h3>
+			{% for i in  demandas %}
+				{% if i.activo %}
+  					<a class="list-group-item list-group-item-info col-md-10 col-sm-9 col-xs-8" href="/web/editar/{{ i.pk }}" title="Editar Demanda">{{ i.nombre |quitarcom }}</a>
+  					<a id="borrar" class="list-group-item list-group-item-danger col-md-2 col-sm-3 col-xs-4" href="{% url 'borrar_articulo' i.pk %}">{% bootstrap_icon "remove" %} Eliminar</a>
+				{% endif %}
+			{% endfor %}
+	</div>
 </div>
-</div>
+{% endif %}
 </div>
 <div class="row">
 <div class="col-md-12">

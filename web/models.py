@@ -8,6 +8,8 @@ from django.template import Context
 from django.conf import settings
 from web.utils import get_upload_path
 from web.utils import get_upload_path_articulo
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
   
 # SOCIO extensión de USER
@@ -70,6 +72,11 @@ class Articulo(models.Model):
   activo = models.BooleanField(default=True)
   fecha = models.DateField(auto_now_add=True)
   imagen = models.ImageField(upload_to=get_upload_path_articulo, blank=True, default="")
+  imagen_thumbnail = ImageSpecField(source = 'imagen',
+					   processors = [ResizeToFill(60, 60)],
+					   format = 'JPEG',
+					   options = {'quality': 95})
+
   def __unicode__(self):
     return self.nombre
 
@@ -89,7 +96,12 @@ class Cuenta(models.Model):
   articulo = ChainedForeignKey(Articulo, chained_field="vendedor", chained_model_field="user", auto_choose=True, blank=True)
   fecha = models.DateField()
   imagen = models.ImageField(upload_to=get_upload_path, blank=True, default="")
+  imagen_thumbnail = ImageSpecField(source = 'imagen',
+					   processors = [ResizeToFill(60, 60)],
+					   format = 'JPEG',
+					   options = {'quality': 95})
   corregido = models.CharField(max_length=10)
+
   class Meta:
     ordering = ['-fecha']
   

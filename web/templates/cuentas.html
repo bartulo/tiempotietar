@@ -22,7 +22,7 @@
         <td>{{ i.vendedor.first_name }}</td>
         <td>{{ i.articulo.nombre }}</td>
 	{% if i.imagen %}
-        <td><a href="{{ i.imagen.url }}" target="_blank">Registro de Intercambio</a></td>
+        <td><a href="{{ i.imagen.url }}" target="_blank"><img src="{{ i.imagen_thumbnail.url }}" /></a></td>
 	{% else %}
         <td>No hay imagen</td>
 	{% endif %}
