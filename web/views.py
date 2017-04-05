@@ -5,9 +5,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.contrib.auth.views import password_reset, password_reset_confirm
-from django_twilio.decorators import twilio_view
-from twilio.twiml import Response
-from web.utils import send_twilio_message
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import CreateView
 
@@ -142,28 +139,3 @@ def reset_confirm(request, uidb64=None, token=None):
 def reset(request):
     return password_reset(request, post_reset_redirect=reverse('login')) 
 
-# SMS ############
-
-@twilio_view
-def sms(request):
-  body = request.POST.get('Body','')
-  reg = RegistroSMS.objects.get(pk=body)
-  msg = "Hola %s, que tal %s" % (reg.comprador.first_name, reg.vendedor.username)
-  r = Response()
-  r.sms(msg)
-  return r
-
-#### REGISTRO POR SMS ####
-
-class registroSmsCreateView(CreateView):
-  model = RegistroSMS
-  form_class = RegistroSmsForm
-  template_name = 'registro_sms.html'
-  success_url = reverse_lazy('registro_sms')
-
-  def form_valid(self, form):
-    formulario = form.save(commit=False)
-    usuario = self.request.user
-    formulario.comprador = usuario
-    salvado = form.save()
-    sent = send_twilio_message(usuario.socio.telefono, 'probando %s' % salvado.pk)
