@@ -110,14 +110,14 @@ class Cuenta(models.Model):
 
 # CORREOS de CUENTAS
 
-def mandar_mensaje(sender, instance, **kwargs):
-  texto = u'''Hola, 
+def mandar_mensaje(sender, instance, created, **kwargs):
+  if created:
+    texto = u'''Hola, 
 
 Os informamos que a fecha %s ha quedado registrado un intercambio entre %s(%s) y %s(%s) por valor de %s horas a favor de %s. Puedes comprobar el movimiento en la página de TaT http://tiempoaltiempo.org
 
 Saludos y gracias por mantener vivo Banco del Tiempo Valle del Tiétar''' % (instance.fecha.strftime('%d/%m'), instance.comprador.first_name, instance.comprador.username, instance.vendedor.first_name, instance.vendedor.username, instance.horas, instance.vendedor.first_name)
-
-  send_mail('Aviso intercambio TaT %s/%s' % (instance.comprador.username, instance.vendedor.username), texto, 'bartulo@gmail.com', [instance.vendedor.email, instance.comprador.email])
+    send_mail('Aviso intercambio TaT %s/%s' % (instance.comprador.username, instance.vendedor.username), texto, 'bartulo@gmail.com', [instance.vendedor.email, instance.comprador.email])
 
 # CORREO para cuando se produce un error en el registro de cuentas
 
