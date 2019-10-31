@@ -121,6 +121,7 @@ exportar_csv.short_description = u"Exportar CSV"
 
 class UserAdmin(UserAdmin):
   inlines = (SocioInline, )
+  ordering = ( 'socio__numsocio', )
   list_display = ('socio', 'first_name', 'last_name', 'horas_positivas', 'horas_negativas', 'horas_totales', )
   list_per_page = 500
   actions = [exportar_csv]
