@@ -90,8 +90,8 @@ class Articulo(models.Model):
 #CUENTAS
 
 class Cuenta(models.Model):
-  vendedor = models.ForeignKey(User, related_name='vendedor')
   comprador = models.ForeignKey(User, related_name='comprador')
+  vendedor = models.ForeignKey(User, related_name='vendedor')
   horas = models.FloatField()
   articulo = ChainedForeignKey(Articulo, chained_field="vendedor", chained_model_field="user", auto_choose=True, blank=True)
   fecha = models.DateField()

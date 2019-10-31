@@ -65,7 +65,7 @@ exportar_csv_cuentas.short_description = u"Exportar CSV"
 #### Página de Cuentas en Admin 
 
 class CuentaAdmin(admin.ModelAdmin):
-  list_display = ('horas', 'vendedor', 'comprador', 'fecha',)
+  list_display = ('horas', 'comprador', 'vendedor', 'fecha',)
   list_filter = ['fecha', VendedorFilter, CompradorFilter] 
   actions = [exportar_csv_cuentas]
 
